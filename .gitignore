@@ -1,0 +1,36 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Maven
+target/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# VS Code
+.vscode/
+
+# Flutter/Dart
+frontend/.dart_tool/
+frontend/.packages
+frontend/build/
+
+# Java
+*.class
+
+# Mac
+*.DS_Store
+
+# Linux
+*~
+
+# Windows
+Desktop.ini

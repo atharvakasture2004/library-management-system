@@ -1,39 +1,14 @@
-package com.atharva.library_management.model;
+package com.atharva.library_management.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "books")
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CreateBookRequest {
     private String title;
     private String author;
-    @Column(unique = true)
     private String isbn;
     private Integer totalCopies;
     private Integer availableCopies;
 
-    public Book(String title, String author, String isbn, Integer totalCopies, Integer availableCopies) {
-        this.title = title;
-        this.author = author;
-        this.isbn = isbn;
-        this.totalCopies = totalCopies;
-        this.availableCopies = availableCopies;
-    }
+    public CreateBookRequest() {
 
-    public Book() {
-
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getTitle() {

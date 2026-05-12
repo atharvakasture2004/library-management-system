@@ -2,6 +2,9 @@ package com.atharva.library_management.service;
 
 import org.springframework.stereotype.Service;
 
+import com.atharva.library_management.dto.BookResponse;
+import com.atharva.library_management.dto.CreateBookRequest;
+import com.atharva.library_management.model.Book;
 import com.atharva.library_management.repository.BookRepository;
 
 @Service
@@ -11,4 +14,24 @@ public class BookService {
     public BookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
+
+    public BookResponse createBook(CreateBookRequest request) {
+        Book book = new Book(
+                request.getTitle(),
+                request.getAuthor(),
+                request.getIsbn(),
+                request.getTotalCopies(),
+                request.getAvailableCopies());
+
+        Book savedBook = bookRepository.save(book);
+
+        return new BookResponse(
+                savedBook.getId(),
+                savedBook.getTitle(),
+                savedBook.getAuthor(),
+                savedBook.getIsbn(),
+                savedBook.getTotalCopies(),
+                savedBook.getAvailableCopies());
+    }
+
 }
