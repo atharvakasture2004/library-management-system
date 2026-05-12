@@ -1,5 +1,7 @@
 package com.atharva.library_management.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.atharva.library_management.dto.BookResponse;
@@ -32,6 +34,17 @@ public class BookService {
                 savedBook.getIsbn(),
                 savedBook.getTotalCopies(),
                 savedBook.getAvailableCopies());
+    }
+
+    public List<BookResponse> getAllBooks() {
+        List<Book> books = bookRepository.findAll();
+
+        return books.stream().map(book -> new BookResponse(book.getId(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getIsbn(),
+                book.getTotalCopies(),
+                book.getAvailableCopies())).toList();
     }
 
 }
