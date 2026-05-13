@@ -48,18 +48,23 @@ public class BookService {
                 book.getAvailableCopies())).toList();
     }
 
-    public BookResponse getBookById(Long id){
-        Book book = bookRepository.findById(id).orElseThrow(()->new BookNotfoundException("Book with id "+id+" does not exist"));
-         return new BookResponse(
-            book.getId(),
-            book.getTitle(),
-            book.getAuthor(),
-            book.getIsbn(),
-            book.getTotalCopies(),
-            book.getAvailableCopies()
-    );
+    public BookResponse getBookById(Long id) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotfoundException("Book with id " + id + " does not exist"));
+        return new BookResponse(
+                book.getId(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getIsbn(),
+                book.getTotalCopies(),
+                book.getAvailableCopies());
     }
 
-   
+    public void deleteBook(Long id) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotfoundException("Book with id " + id + " does not exist"));
+
+        bookRepository.delete(book);
+    }
 
 }
