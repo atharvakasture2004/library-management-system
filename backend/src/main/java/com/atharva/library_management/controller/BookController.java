@@ -13,6 +13,8 @@ import com.atharva.library_management.dto.BookResponse;
 import com.atharva.library_management.dto.CreateBookRequest;
 import com.atharva.library_management.service.BookService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(ApiConstants.BOOK_API)
 public class BookController {
@@ -28,7 +30,7 @@ public class BookController {
     }
 
     @PostMapping
-    public BookResponse createBook(@RequestBody CreateBookRequest request){
+    public BookResponse createBook(@Valid @RequestBody CreateBookRequest request){
         return bookService.createBook(request);
     }
 
