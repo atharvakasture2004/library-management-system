@@ -67,4 +67,26 @@ public class BookService {
         bookRepository.delete(book);
     }
 
+    public BookResponse updateBook(Long id, CreateBookRequest request) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotfoundException("Book with id " + id + " does not exist"));
+
+        book.setTitle(request.getTitle());
+        book.setAuthor(request.getAuthor());
+        book.setIsbn(request.getIsbn());
+        book.setTotalCopies(request.getTotalCopies());
+        book.setAvailableCopies(request.getAvailableCopies());
+
+        Book updatedBook = bookRepository.save(book);
+
+        return new BookResponse(
+                updatedBook.getId(),
+                updatedBook.getTitle(),
+                updatedBook.getAuthor(),
+                updatedBook.getIsbn(),
+                updatedBook.getTotalCopies(),
+                updatedBook.getAvailableCopies());
+
+    }
+
 }
