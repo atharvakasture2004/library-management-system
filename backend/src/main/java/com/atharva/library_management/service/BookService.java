@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.atharva.library_management.dto.BookResponse;
 import com.atharva.library_management.dto.CreateBookRequest;
+import com.atharva.library_management.exception.BookNotfoundException;
 import com.atharva.library_management.model.Book;
 import com.atharva.library_management.repository.BookRepository;
 
@@ -46,5 +47,19 @@ public class BookService {
                 book.getTotalCopies(),
                 book.getAvailableCopies())).toList();
     }
+
+    public BookResponse getBookById(Long id){
+        Book book = bookRepository.findById(id).orElseThrow(()->new BookNotfoundException("Book with id "+id+" does not exist"));
+         return new BookResponse(
+            book.getId(),
+            book.getTitle(),
+            book.getAuthor(),
+            book.getIsbn(),
+            book.getTotalCopies(),
+            book.getAvailableCopies()
+    );
+    }
+
+   
 
 }
