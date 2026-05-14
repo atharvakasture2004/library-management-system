@@ -1,18 +1,18 @@
 package com.atharva.library_management.dto;
 
 public class AuthResponse {
-    private String message;
+    private String token;
 
-    public AuthResponse(String message) {
-        this.message = message;
+    public AuthResponse(String token) {
+        this.token = token;
     }
 
-    public String getMessage() {
-        return message;
+    public String gettoken() {
+        return token;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void settoken(String token) {
+        this.token = token;
     }
 
 }

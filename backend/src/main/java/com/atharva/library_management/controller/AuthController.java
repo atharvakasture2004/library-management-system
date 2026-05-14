@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.atharva.library_management.dto.AuthResponse;
 import com.atharva.library_management.dto.RegisterRequest;
+import com.atharva.library_management.dto.auth.LoginRequest;
 import com.atharva.library_management.service.AuthService;
 
 import jakarta.validation.Valid;
@@ -15,12 +16,20 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/auth")
 public class AuthController {
     private final AuthService authService;
-    public AuthController(AuthService authService){
+
+    public AuthController(AuthService authService) {
         this.authService = authService;
     }
 
     @PostMapping("/register")
-    public AuthResponse register(@Valid @RequestBody RegisterRequest request){
+    public AuthResponse register(@Valid @RequestBody RegisterRequest request) {
         return authService.register(request);
+    }
+
+    @PostMapping("/login")
+    public AuthResponse login(
+            @Valid @RequestBody LoginRequest request) {
+
+        return authService.login(request);
     }
 }
